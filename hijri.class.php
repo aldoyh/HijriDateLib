@@ -993,7 +993,10 @@ class Calendar
 			$umalqura = $this->umalqura;
 		}
 		if ($umalqura && $year >= self::umstartyear && $year <= self::umendyear) {
-			$ii = (int) ($year - self::umstartyear) / 12;
+			if (empty($this->umdata)) {
+				$this->get_umalquradata();
+			}
+			$ii = (int) (($year - self::umstartyear) / 12);
 			$L = (($this->umdata[12 * ($ii + 1)] - $this->umdata[12 * $ii]) > 354) ? (1) : (0);
 		} else {
 			if ($year < 0) {
